@@ -1,0 +1,81 @@
+documentsDir:
+lookups:
+  -
+    id: google
+    name: Google
+    url: https://www.google.com/search?q={input}
+  -
+    id: bob
+    name: Bob
+    url: https://www.google.com/search?q={input} site:www.languefrancaise.net
+    params:
+      sourceLang: fr
+  -
+    id: synonimnet
+    name: Synonim.NET
+    url: https://synonim.net/synonim/{input}
+    params:
+      sourceLang: pl
+  -
+    id: internazionale
+    name: Internazionale
+    url: https://dizionario.internazionale.it/cerca/{input}
+    params:
+      sourceLang: it
+setups:
+  -
+    name: English 🡒 Polski
+    lookups:
+      - google
+      - lingea(en, pl)
+      - rc(en, pl)
+      - pwn
+      - synonimypl
+      - synonimnet
+      - pwnkorpus
+  -
+    name: Deutsch 🡒 Polski
+    lookups:
+      - google
+      - wr(de, en)
+      - lingea(de, pl)
+      - lingea(en, pl)
+      - rc(de, pl)
+      - rc(de, en)
+      - rc(en, pl)
+      - pwn
+      - synonimypl
+      - synonimnet
+      - pwnkorpus
+  -
+    name: Français 🡒 Polski
+    lookups:
+      - google
+      - wr(fr, en)
+      - lingea(fr, pl)
+      - bob
+      - lingea(en, pl)
+      - rc(fr, pl)
+      - rc(fr, en)
+      - rc(en, pl)
+      - pwn
+      - synonimypl
+      - synonimnet
+      - pwnkorpus
+  -
+    name: Italiano 🡒 Polski
+    lookups:
+      - google
+      - wr(it, en)
+      - lingea(it, pl)
+      - garzanti
+      - internazionale
+      - lingea(en, pl)
+      - rc(it, pl)
+      - rc(it, en)
+      - rc(en, pl)
+      - trex(it, en)
+      - pwn
+      - synonimypl
+      - synonimnet
+      - pwnkorpus
