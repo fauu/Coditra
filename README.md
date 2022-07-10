@@ -7,7 +7,7 @@
 -->
 # Coditra
 
-> A desktop translator’s companion. Select fragments of a text document and
+> A translator’s companion for desktop. Select fragments of a text document and
 > quickly look them up in online dictionaries
 
 Coditra is a locally run web application intended as support in translation of
@@ -145,7 +145,7 @@ coditra --prepare <filename>.md <filename>.html`
   it snap to full words.
 
 * You can use `pandoc` to easily create an input Markdown file directly from a
-  text selection made in web browser. For example (Wayland version):
+  text selection made in web browser. For example (Linux Wayland version):
 
   ```sh
   wl-paste -t text/html | pandoc -r html -w markdown-raw_html-native_divs-native_spans-fenced_divs-bracketed_spans > <filename>.md
