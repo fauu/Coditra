@@ -136,7 +136,7 @@ on by clicking on it.
 To convert a Markdown input file to a prepared HTML file, run:
 
 ```sh
-coditra --prepare <filename>.md <filename>.html`
+coditra --prepare <filename>.md <filename>.html
 ```
 
 ## Usage tips
