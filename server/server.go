@@ -58,12 +58,14 @@ func RunServer() error {
 		UserAgent: Cfg.UserAgent,
 	}
 
+	lookupCache := NewLookupCache()
+
 	r := chi.NewRouter()
 	r.Route("/api", func(r chi.Router) {
 		r.Get("/docs", getDocumentNames)
 		r.Get("/docs/{name}", getDocumentByName)
 		r.Get("/setups", getSetups)
-		r.Get("/{source}/{input}", getLookupResult)
+		r.Get("/{source}/{input}", getLookupResultHandler(&lookupCache))
 	})
 	FileServer(r, "/", http.FS(clientDistFS))
 

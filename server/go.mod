@@ -8,6 +8,7 @@ require (
 	github.com/go-chi/chi/v5 v5.0.7
 	github.com/microcosm-cc/bluemonday v1.0.20
 	github.com/rs/cors v1.8.2
+	github.com/twmb/murmur3 v1.1.6
 	github.com/yuin/goldmark v1.4.11
 	golang.org/x/net v0.0.0-20220920203100-d0c6ba3f52d9
 )

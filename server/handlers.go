@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"path"
@@ -17,21 +18,35 @@ import (
 	"github.com/fauu/coditra/util"
 )
 
-func getLookupResult(w http.ResponseWriter, r *http.Request) {
-	queryParams := map[string]string{}
-	for k, v := range r.URL.Query() {
-		queryParams[k] = v[0]
-	}
+type HandlerFunc = func(w http.ResponseWriter, r *http.Request)
 
-	sourceID := chi.URLParam(r, "source")
-	input := chi.URLParam(r, "input")
-	source := LookupSources[sourceID]
-	if source != nil {
-		transParams, _ := source.TransformParams(queryParams)
-		result, _ := source.DoLookup(SourceEnv, input, transParams)
-		jsonResponse(w, http.StatusOK, result)
-	} else {
-		jsonResponse(w, http.StatusNotFound, nil)
+func getLookupResultHandler(cache *LookupCache) HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		queryParams := map[string]string{}
+		for k, v := range r.URL.Query() {
+			queryParams[k] = v[0]
+		}
+
+		sourceID := chi.URLParam(r, "source")
+		input := chi.URLParam(r, "input")
+		source := LookupSources[sourceID]
+		if source != nil {
+			var result any
+			requestHash, cachedResult := cache.query(sourceID, input)
+			if cachedResult != nil {
+				result = *cachedResult
+				log.Printf("Lookup request for source %s served from cache", source.Name)
+			} else {
+				transParams, _ := source.TransformParams(queryParams)
+				result, _ = source.DoLookup(SourceEnv, input, transParams)
+				if result != nil {
+					cache.store(requestHash, result)
+				}
+			}
+			jsonResponse(w, http.StatusOK, result)
+		} else {
+			jsonResponse(w, http.StatusNotFound, nil)
+		}
 	}
 }
 

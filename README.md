@@ -139,7 +139,7 @@ To convert a Markdown input file to a prepared HTML file, run:
 coditra --prepare <filename>.md <filename>.html
 ```
 
-## Usage tips
+## Usage tips/notes
 
 * Initiating text selection by with double click instead of a single click makes
   it snap to full words.
@@ -150,6 +150,9 @@ coditra --prepare <filename>.md <filename>.html
   ```sh
   wl-paste -t text/html | pandoc -r html -w markdown-raw_html-native_divs-native_spans-fenced_divs-bracketed_spans > <filename>.md
   ```
+
+* Successful lookup requests are cached in memory until the program is
+  restarted.
 
 ## Known issues
 
