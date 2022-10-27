@@ -38,13 +38,13 @@ Requirements: `Yarn 1` (or equivalent), `go`.
 1. Clone
 
     ```sh
-    git clone "https://github.com/fauu/coditra"
+    git clone "https://github.com/fauu/Coditra"
     ```
 
 1. Build the client
 
     ```sh
-    cd coditra/client
+    cd Coditra/client
     yarn install
     yarn build
     ```
