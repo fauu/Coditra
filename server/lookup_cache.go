@@ -1,6 +1,8 @@
 package coditra
 
-import "github.com/twmb/murmur3"
+import (
+	"github.com/twmb/murmur3"
+)
 
 type LookupRequestHash = uint64
 
@@ -15,8 +17,8 @@ func NewLookupCache() LookupCache {
 }
 
 // QUAL: Make the input params into a `LookupRequest` struct?
-func (c LookupCache) query(sourceID string, input string) (LookupRequestHash, *any) {
-	requestHash := hashRequest(sourceID, input)
+func (c LookupCache) query(sourceID string, queryParams map[string]string, input string) (LookupRequestHash, *any) {
+	requestHash := hashRequest(sourceID, queryParams, input)
 	result, found := c.entries[requestHash]
 	if found {
 		return requestHash, &result
@@ -28,8 +30,12 @@ func (c LookupCache) store(requestHash LookupRequestHash, result any) {
 	c.entries[requestHash] = result
 }
 
-func hashRequest(sourceID string, input string) LookupRequestHash {
+func hashRequest(sourceID string, queryParams map[string]string, input string) LookupRequestHash {
 	var hash = murmur3.New64()
-	hash.Write([]byte(sourceID + input))
+	paramsStr := ""
+	for k, v := range queryParams {
+		paramsStr += k + v
+	}
+	hash.Write([]byte(sourceID + paramsStr + input))
 	return hash.Sum64()
 }

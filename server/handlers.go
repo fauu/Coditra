@@ -32,7 +32,7 @@ func getLookupResultHandler(cache *LookupCache) HandlerFunc {
 		source := LookupSources[sourceID]
 		if source != nil {
 			var result any
-			requestHash, cachedResult := cache.query(sourceID, input)
+			requestHash, cachedResult := cache.query(sourceID, queryParams, input)
 			if cachedResult != nil {
 				result = *cachedResult
 				log.Printf("Lookup request for source %s served from cache", source.Name)
