@@ -125,15 +125,17 @@ setups:
 
 ## Input documents
 
-Coditra uses HTML files as input. For best results, however, a Markdown file
-should be fed to it first in order to produce a HTML file specifically tailored
-for use with it. This enables features that make it easier for you to remain
-oriented within the text while constantly context-switching between it and the
-lookup results. Specifically, those features are: displaying each sentence in
-its own paragraph and letting you highlight a sentence you are currently working
-on by clicking on it.
+Coditra uses HTML files as input.
 
-To convert a Markdown input file to a prepared HTML file, run:
+It is recommened to use specially formatted HTML files, which can be created by
+Coditra from Markdown files. This special formatting enables features that make
+it easier to orient yourself within the text while constantly context-switching
+between it and the lookup results. Specifically, those features are: 1)
+displaying each sentence in its own paragraph, 2) letting you highlight the
+sentence your are currently working on by clicking on it, 3) underlining
+emphasized portions of text so that the formatting is not overlooked.
+
+To convert a Markdown file to a prepared HTML file, run:
 
 ```sh
 coditra --prepare <filename>.md <filename>.html
@@ -214,7 +216,7 @@ development server.
 ## License
 
 Coditra\
-Copyright (C) 2020-2022 Piotr Grabowski
+Copyright (C) 2020-2025 Piotr Grabowski
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU Affero General Public License as published by the Free
