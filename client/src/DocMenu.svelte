@@ -1,10 +1,10 @@
 <script>
-  export let onCloseClick;
+  let { onCloseClick } = $props();
 </script>
 
 <div class="doc-menu">
-  <button on:click={onCloseClick}>
-    <i class="la la-close" />
+  <button aria-label="Close Document" onclick={onCloseClick}>
+    <i class="la la-close"></i>
   </button>
 </div>
 

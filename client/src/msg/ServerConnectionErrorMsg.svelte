@@ -1,7 +1,13 @@
 <script>
   import { SERVER_ADDR } from "../consts";
 
-  export let large = false;
+  /**
+   * @typedef {Object} Props
+   * @property {boolean} [large]
+   */
+
+  /** @type {Props} */
+  let { large = false } = $props();
 </script>
 
 <div class="error" class:large>

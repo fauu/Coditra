@@ -1,7 +1,7 @@
 <script>
   import TwoColumnTranslation from "./TwoColumnTranslation.svelte";
 
-  export let lookupResult;
+  let { lookupResult } = $props();
 </script>
 
 {#if lookupResult.translations}

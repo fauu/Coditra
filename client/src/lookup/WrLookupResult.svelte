@@ -1,7 +1,7 @@
 <script>
   import WrEntryGroup from "./WrEntryGroup.svelte";
 
-  export let lookupResult;
+  let { lookupResult } = $props();
 </script>
 
 <div class="primary">

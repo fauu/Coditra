@@ -4,9 +4,7 @@
   import { SENTENCE_SCROLL_TOP_OFFSET } from "./consts";
   import { scrollTo } from "./dom";
 
-  export let doc;
-  export let onMouseDown;
-  export let extraMarginBottom;
+  let { doc, onMouseDown, extraMarginBottom = $bindable() } = $props();
 
   let segmentEls = [];
 
@@ -33,7 +31,12 @@
   };
 </script>
 
-<div class="doc" on:mousedown={onMouseDown} style:margin-bottom={9 + extraMarginBottom}px>
+<div
+  class="doc"
+  role="presentation"
+  onmousedown={onMouseDown}
+  style:margin-bottom="{9 + extraMarginBottom}px"
+>
   {@html doc.content}
 </div>
 

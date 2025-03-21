@@ -1,5 +1,11 @@
 <script>
-  export let delayMs = 1000;
+  /**
+   * @typedef {Object} Props
+   * @property {number} [delayMs]
+   */
+
+  /** @type {Props} */
+  let { delayMs = 1000 } = $props();
 
   const delayedReveal = (node) => {
     node.style.display = "none";
@@ -12,11 +18,11 @@
 
 <!-- https://github.com/tobiasahlin/SpinKit/blob/master/LICENSE -->
 <div use:delayedReveal class="spinner">
-  <div class="rect1" />
-  <div class="rect2" />
-  <div class="rect3" />
-  <div class="rect4" />
-  <div class="rect5" />
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
 </div>
 
 <style>

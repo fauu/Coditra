@@ -1,6 +1,5 @@
 <script>
-  export let lookupResult;
-  export let onRefLookup;
+  let { lookupResult, onRefLookup } = $props();
 </script>
 
 {#if lookupResult.title}
@@ -31,7 +30,7 @@
   <ul class="synonym-list">
     {#each lookupResult.suggestedAlternatives as alt}
       <li class="synonym">
-        <button class="further-lookup-button" on:click={onRefLookup(alt)}>
+        <button class="further-lookup-button" onclick={() => onRefLookup(alt)}>
           {alt}
         </button>
       </li>

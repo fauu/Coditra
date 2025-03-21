@@ -1,5 +1,5 @@
 <script>
-  export let source;
+  let { source } = $props();
 </script>
 
 <div class="error">

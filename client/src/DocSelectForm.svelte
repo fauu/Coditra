@@ -1,6 +1,5 @@
 <script>
-  export let docNames;
-  export let onSubmit;
+  let { docNames, onSubmit } = $props();
 </script>
 
 <div class="main">
@@ -8,10 +7,10 @@
   <p class="select-doc-prompt-msg">Select a document:</p>
   <ul class="doc-list">
     {#each docNames as docName}
-      <li on:click={() => onSubmit(docName)}>{docName}</li>
+      <button type="button" onclick={() => onSubmit(docName)}>{docName}</button>
     {/each}
   </ul>
-  <br>
+  <br />
 </div>
 
 <style>
@@ -38,24 +37,25 @@
     border-radius: 4px;
   }
 
-  .doc-list li {
+  .doc-list button {
     padding: 0.4rem 0.55rem;
     background-color: var(--color-bg-lighter);
+    width: 100%;
   }
 
-  .doc-list li:first-child {
-    border-radius: 4px 4px 0 0; 
+  .doc-list button:first-child {
+    border-radius: 4px 4px 0 0;
   }
 
-  .doc-list li:last-child {
-    border-radius: 0 0 4px 4px; 
+  .doc-list button:last-child {
+    border-radius: 0 0 4px 4px;
   }
 
-  .doc-list li:not(:last-child) {
+  .doc-list button:not(:last-child) {
     border-bottom: 1px solid var(--color-bg-darker-2);
   }
 
-  .doc-list li:hover {
+  .doc-list button:hover {
     background-color: var(--color-bg-lighter-2);
     cursor: pointer;
   }

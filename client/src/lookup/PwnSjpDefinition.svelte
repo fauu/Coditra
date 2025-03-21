@@ -1,6 +1,5 @@
 <script>
-  export let definition;
-  export let onRefLookup;
+  let { definition, onRefLookup } = $props();
 </script>
 
 {#if definition.qualifier}
@@ -8,7 +7,10 @@
 {/if}
 {#if definition.xref}
   <span>zob.</span>
-  <button class="further-lookup-button" on:click={onRefLookup(definition.xref)}>
+  <button
+    class="further-lookup-button"
+    onclick={() => onRefLookup(definition.xref)}
+  >
     {definition.content}
   </button>
 {:else}

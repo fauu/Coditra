@@ -1,8 +1,7 @@
 <script>
   import PwnSjpDefinition from "./PwnSjpDefinition.svelte";
 
-  export let lookupResult;
-  export let onRefLookup;
+  let { lookupResult, onRefLookup } = $props();
 </script>
 
 <div class="sjp-result">

@@ -2,8 +2,48 @@
   import TwoColumnTranslation from "./TwoColumnTranslation.svelte";
   import LingeaExpressionsAndExamples from "./LingeaExpressionsAndExamples.svelte";
 
-  export let lookupResult;
+  let { lookupResult } = $props();
 </script>
+
+<div class="title-row">
+  <span class="title">{lookupResult.title}</span>{#if lookupResult.femSuffix},
+    <span class="fem-suffix">{lookupResult.femSuffix}</span>
+  {/if}
+</div>
+
+<div class="morf-blocks">
+  {#each lookupResult.morfBlocks as block}
+    <div class="morf-block">
+      <div class="morf">{block.morf}</div>
+      <div class="morf-block-main">
+        {#each block.segments as segment}
+          <div class="segment">
+            {#if segment.definition}
+              <div class="definition">
+                {@html segment.definition}
+              </div>
+            {/if}
+            <LingeaExpressionsAndExamples object={segment} />
+          </div>
+        {/each}
+      </div>
+    </div>
+  {/each}
+</div>
+
+{#if lookupResult.phrases}
+  <LingeaExpressionsAndExamples object={lookupResult.phrases} />
+{/if}
+
+{#if lookupResult.keywordTerms}
+  {#each lookupResult.keywordTerms as keywordTerm}
+    <div class="keyword-term">
+      <div class="keyword-term-main">
+        <TwoColumnTranslation object={keywordTerm.twoColumn} />
+      </div>
+    </div>
+  {/each}
+{/if}
 
 <!-- TODO: "related" links !-->
 
@@ -21,7 +61,8 @@
     margin-bottom: 0.75rem;
   }
 
-  .title, .fem-suffix {
+  .title,
+  .fem-suffix {
     font-weight: bold;
     font-size: 1.1rem;
   }
@@ -72,43 +113,3 @@
     font-size: 0.9rem;
   }
 </style>
-
-<div class="title-row">
-  <span class="title">{lookupResult.title}</span>{#if lookupResult.femSuffix},
-    <span class="fem-suffix">{lookupResult.femSuffix}</span>
-  {/if}
-</div>
-
-<div class="morf-blocks">
-  {#each lookupResult.morfBlocks as block}
-    <div class="morf-block">
-      <div class="morf">{block.morf}</div>
-      <div class="morf-block-main">
-        {#each block.segments as segment}
-          <div class="segment">
-            {#if segment.definition}
-              <div class="definition">
-                {@html segment.definition}
-              </div>
-            {/if}
-            <LingeaExpressionsAndExamples object={segment} />
-          </div>
-        {/each}
-      </div>
-    </div>
-  {/each}
-</div>
-
-{#if lookupResult.phrases}
-  <LingeaExpressionsAndExamples object={lookupResult.phrases} />
-{/if}
-
-{#if lookupResult.keywordTerms}
-  {#each lookupResult.keywordTerms as keywordTerm}
-    <div class="keyword-term">
-      <div class="keyword-term-main">
-        <TwoColumnTranslation object={keywordTerm.twoColumn} />
-      </div>
-    </div>
-  {/each}
-{/if}

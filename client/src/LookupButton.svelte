@@ -1,9 +1,16 @@
 <script>
-  export let entry;
-  export let isCurrent;
+  import { createBubbler } from "svelte/legacy";
+
+  const bubble = createBubbler();
+  let { entry, isCurrent } = $props();
 </script>
 
-<div class="button" role="button" class:current={isCurrent} on:click>
+<button
+  type="button"
+  class="button"
+  class:current={isCurrent}
+  onclick={bubble("click")}
+>
   <div class="content">
     <div class="sub-left">
       {#if entry.params && entry.params.sourceLang}
@@ -18,7 +25,7 @@
     <div class="main">
       <span class="name">{entry.name}</span>
       {#if entry.url}
-        <i class="external-lookup-icon la la-external-link-alt" />
+        <i class="external-lookup-icon la la-external-link-alt"></i>
       {/if}
     </div>
     <div class="sub-right">
@@ -31,7 +38,7 @@
       {/if}
     </div>
   </div>
-</div>
+</button>
 
 <style>
   .button {

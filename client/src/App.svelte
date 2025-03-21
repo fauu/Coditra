@@ -1,28 +1,30 @@
 <script>
   import * as api from "./api.js";
 
-  import { 
+  import {
     LOOKUP_PANEL_MIN_HEIGHT,
     LOOKUP_PANEL_MIN_TOP_MARGIN,
-    LOOKUP_PANEL_DEFAULT_HEIGHT
+    LOOKUP_PANEL_DEFAULT_HEIGHT,
   } from "./consts";
 
   import Doc from "./Doc.svelte";
   import DocMenu from "./DocMenu.svelte";
-  import InitForm from "./InitForm.svelte";
+  import DocSelectForm from "./DocSelectForm.svelte";
   import LookupPanel from "./LookupPanel.svelte";
   import Spinner from "./Spinner.svelte";
 
-  let appState = "init-setup";
-  let showLookupPanel = false;
+  let appState = $state("init-setup");
+  let showLookupPanel = $state(false);
   let selectedDocName = localStorage.getItem("docName") || undefined;
-  let lookupPanelHeight = LOOKUP_PANEL_DEFAULT_HEIGHT;
+  let lookupPanelHeight = $state(LOOKUP_PANEL_DEFAULT_HEIGHT);
   let isResizingLookupPanel = false;
-  let doc;
-  let setups = api.getSetups();
+  let doc = $state();
+  let setups = $state(api.getSetups());
   let mouseUpSelectionTimeout;
 
-  const savedLookupPanelHeight = parseInt(localStorage.getItem("lookupPanelHeight"));
+  const savedLookupPanelHeight = parseInt(
+    localStorage.getItem("lookupPanelHeight"),
+  );
   if (!isNaN(savedLookupPanelHeight)) {
     lookupPanelHeight = savedLookupPanelHeight;
   }
@@ -103,27 +105,25 @@
     clearTimeout(mouseUpSelectionTimeout);
     showLookupPanel = false;
   };
-  
+
   const handleLookupPanelResizeStart = () => {
     document.body.style.cursor = "row-resize";
     isResizingLookupPanel = true;
   };
 </script>
 
-<svelte:window 
-  on:mouseup={handleWindowMouseUp} 
-  on:keyup={handleWindowKeyUp} 
-  on:mousemove={handleWindowMouseMove} />
+<svelte:window
+  onmouseup={handleWindowMouseUp}
+  onkeyup={handleWindowKeyUp}
+  onmousemove={handleWindowMouseMove}
+/>
 
 <main class="main-container">
   {#if appState === "init-setup"}
     {#await api.getDocNames()}
       <Spinner />
     {:then docNames}
-      <InitForm
-        {docNames}
-        onSubmit={handleInitSetupSubmit}
-      />
+      <DocSelectForm {docNames} onSubmit={handleInitSetupSubmit} />
     {:catch error}
       {error}
     {/await}
@@ -131,10 +131,11 @@
     <Spinner />
   {:else if appState === "doc-view"}
     <DocMenu onCloseClick={handleCloseDocClick} />
-    <Doc 
-      {doc} 
+    <Doc
+      {doc}
       onMouseDown={handleDocMouseDown}
-      bind:extraMarginBottom={lookupPanelHeight} />
+      bind:extraMarginBottom={lookupPanelHeight}
+    />
     {#if showLookupPanel}
       <LookupPanel
         {setups}
@@ -163,7 +164,8 @@
     --color-hl-darker-3: #b95ea4;
     --color-hl-darker-4: #651782;
     --color-hl-lighter: #ffc7f2;
-    --fonts-default: -apple-system, BlinkMacSystemFont, Roboto, "Droid Sans", "Helvetica Now",
+    --fonts-default:
+      -apple-system, BlinkMacSystemFont, Roboto, "Droid Sans", "Helvetica Now",
       "Helvetica Neue", Helvetica, Geneva, Arial, sans-serif;
     --fonts-mono: "Roboto Mono", "Consolas", "Droid Sans Mono", monospace;
   }

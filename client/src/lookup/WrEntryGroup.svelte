@@ -1,5 +1,5 @@
 <script>
-  export let entries;
+  let { entries } = $props();
 </script>
 
 {#each entries as entry}

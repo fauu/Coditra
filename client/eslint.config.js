@@ -1,11 +1,11 @@
 import { defineConfig, globalIgnores } from "eslint/config";
 import js from "@eslint/js";
 import prettierConfig from "eslint-config-prettier";
-import sveltePlugin from "eslint-plugin-svelte3";
+import sveltePlugin from "eslint-plugin-svelte";
 import globals from "globals";
 
 export default defineConfig([
-  globalIgnores(["webpack.config.cjs"]),
+  globalIgnores(["webpack.config.cjs", "dist/"]),
 
   js.configs.recommended,
   prettierConfig,
@@ -34,8 +34,9 @@ export default defineConfig([
   {
     files: ["**/*.svelte"],
     plugins: {
-      svelte3: sveltePlugin,
+      svelte: sveltePlugin,
     },
-    processor: "svelte3/svelte3",
+    processor: "svelte/svelte",
   },
+  sveltePlugin.configs.recommended,
 ]);

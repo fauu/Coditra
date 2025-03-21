@@ -1,4 +1,6 @@
 <script>
+  import { run } from "svelte/legacy";
+
   import { onMount } from "svelte";
 
   import BadRequestMsg from "./msg/BadRequestMsg.svelte";
@@ -18,10 +20,7 @@
   import GarzantiLookupResult from "./lookup/GarzantiLookupResult.svelte";
   import TrexLookupResult from "./lookup/TrexLookupResult.svelte";
 
-  export let setups;
-  export let selectedText;
-  export let height;
-  export let onResizeStart;
+  let { setups, selectedText, height = $bindable(), onResizeStart } = $props();
 
   const sourceToLookupResultComponent = {
     pwn: PwnLookupResult,
@@ -34,21 +33,15 @@
     trex: TrexLookupResult,
   };
 
-  let selectedSetupIdx = 0;
-  let selectedSetup;
-  let inputEl;
-  let input;
-  let lookupResultComponent;
-  let currentLookupEntry;
-  let lookupFetch = { state: "initial" };
+  let selectedSetupIdx = $state(0);
+  let selectedSetup = $state();
+  let inputEl = $state();
+  let input = $state();
+  let lookupResultComponent = $state();
+  let currentLookupEntry = $state();
+  let lookupFetch = $state({ state: "initial" });
   let defaultLookupRunning;
 
-  $: selectedSetup = setups[selectedSetupIdx];
-  $: {
-    if (selectedSetup) {
-      localStorage.setItem("setupName", selectedSetup.name);
-    }
-  }
   const savedSetupName = localStorage.getItem("setupName");
   if (savedSetupName) {
     const foundIdx = setups.findIndex((s) => s.name === savedSetupName);
@@ -62,7 +55,7 @@
     inputEl.focus();
     if (input !== "") {
       const firstDefaultLookupEntry = selectedSetup.lookupEntries.find(
-        (e) => e.default
+        (e) => e.default,
       );
       if (firstDefaultLookupEntry) {
         defaultLookupRunning = true;
@@ -70,8 +63,6 @@
       }
     }
   });
-
-  $: input && resetLookup();
 
   const resetLookup = () => {
     if (lookupFetch.state !== "initial" && !defaultLookupRunning)
@@ -83,15 +74,19 @@
       window.open(entry.url.replace("{input}", input));
       return;
     }
+
     if (lookupFetch.state === "fetching") {
       // TODO: Should probably cancel the ongoing request too if possible
       resetLookup();
     }
+
     lookupResultComponent = sourceToLookupResultComponent[entry.source];
     currentLookupEntry = entry;
     lookupFetch.state = "fetching";
+
     try {
       lookupFetch.result = await api.getDef(entry.source, input, entry.params);
+
       // Make sure we haven't cancelled in the meantime
       if (lookupFetch.state === "fetching") {
         lookupFetch.state = "done";
@@ -100,13 +95,16 @@
       if (lookupFetch.state !== "fetching") {
         return;
       }
+
       lookupFetch.state = "error";
+
       if (err.message.startsWith("Request failed")) {
         lookupFetch.error = "lookup";
       } else {
         lookupFetch.error = "server-connection";
       }
     }
+
     defaultLookupRunning = false;
   };
 
@@ -120,9 +118,32 @@
     if (!input) return;
     doLookup(entry, input);
   };
+
+  run(() => {
+    selectedSetup = setups[selectedSetupIdx];
+  });
+
+  run(() => {
+    if (selectedSetup) {
+      localStorage.setItem("setupName", selectedSetup.name);
+    }
+  });
+
+  let prevInput = $state("");
+  $effect.pre(() => {
+    if (input !== prevInput) {
+      resetLookup();
+      prevInput = input;
+    }
+  });
 </script>
 
-<div class="main" on:mousedown={handleMouseDown} style:height={height}px>
+<div
+  class="main"
+  role="presentation"
+  onmousedown={handleMouseDown}
+  style:height="{height}px"
+>
   <div class="input-row">
     <input class="input" type="text" bind:this={inputEl} bind:value={input} />
   </div>
@@ -165,8 +186,8 @@
               {lookupFetch.result.sourceUrl}
             </a>
           </div>
-          <svelte:component
-            this={lookupResultComponent}
+          {@const SvelteComponent = lookupResultComponent}
+          <SvelteComponent
             lookupResult={lookupFetch.result}
             onRefLookup={(input) => doLookup(currentLookupEntry, input)}
           />
@@ -278,7 +299,8 @@
     margin-bottom: 0.5rem;
   }
 
-  .spinner-container, .msg-container {
+  .spinner-container,
+  .msg-container {
     width: 100%;
     height: 100%;
     display: flex;

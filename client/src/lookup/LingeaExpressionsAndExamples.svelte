@@ -1,7 +1,7 @@
 <script>
   import TwoColumnTranslation from "./TwoColumnTranslation.svelte";
 
-  export let object;
+  let { object } = $props();
 </script>
 
 {#if object.expressions}

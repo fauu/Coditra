@@ -1,5 +1,5 @@
 <script>
-  export let lookupResult;
+  let { lookupResult } = $props();
 </script>
 
 <div class="title-row">
