@@ -4,6 +4,11 @@ SHELL := bash
 .SHELLFLAGS := -eu -o pipefail -c
 MAKEFLAGS += --warn-undefined-variables
 
+format-client:
+	cd client
+	pnpm format
+.PHONY: format-client
+
 lint: lint-client lint-server
 .PHONY: lint
 
