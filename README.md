@@ -20,6 +20,9 @@ currently requires writing an adapter for it, compiling it together with the
 server portion of the program as well as writing the corresponding UI component
 for the client portion of the program to display the results.
 
+Tested on Linux and Windows. Should theoretically also work on macOS, FreeBSD,
+OpenBSD, NetBSD and Solaris.
+
 Supports Linux, Windows, and (theoretically — untested) macOS.
 
 Built with [Go](https://go.dev/) and [Svelte](https://svelte.dev/).
