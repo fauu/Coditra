@@ -1,15 +1,12 @@
 <script>
-  import { createBubbler } from "svelte/legacy";
-
-  const bubble = createBubbler();
-  let { entry, isCurrent } = $props();
+  let { entry, isCurrent, onclick } = $props();
 </script>
 
 <button
   type="button"
   class="button"
   class:current={isCurrent}
-  onclick={bubble("click")}
+  {onclick}
 >
   <div class="content">
     <div class="sub-left">

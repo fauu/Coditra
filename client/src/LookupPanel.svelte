@@ -1,6 +1,4 @@
 <script>
-  import { run } from "svelte/legacy";
-
   import { onMount } from "svelte";
 
   import BadRequestMsg from "./msg/BadRequestMsg.svelte";
@@ -34,7 +32,7 @@
   };
 
   let selectedSetupIdx = $state(0);
-  let selectedSetup = $state();
+  let selectedSetup = $derived(setups[selectedSetupIdx]);
   let inputEl = $state();
   let input = $state();
   let lookupResultComponent = $state();
@@ -119,18 +117,14 @@
     doLookup(entry, input);
   };
 
-  run(() => {
-    selectedSetup = setups[selectedSetupIdx];
-  });
-
-  run(() => {
+  $effect(() => {
     if (selectedSetup) {
       localStorage.setItem("setupName", selectedSetup.name);
     }
   });
 
   let prevInput = $state("");
-  $effect.pre(() => {
+  $effect(() => {
     if (input !== prevInput) {
       resetLookup();
       prevInput = input;
@@ -155,7 +149,7 @@
             {entry}
             isCurrent={currentLookupEntry === entry &&
               lookupFetch.state === "done"}
-            on:click={() => handleLookupButtonClick(entry)}
+            onclick={() => handleLookupButtonClick(entry)}
           />
         {/each}
       </div>
