@@ -168,11 +168,11 @@ coditra --prepare <filename>.md <filename>.html
 
 Terminal #1:
 
-1. `go install github.com/cortesi/modd/cmd/modd@latest` or `pacman -S modd` etc.
+1. `go install github.com/air-verse/air@latest` or `pacman -S air-bin` etc.
 
 2. `cd server`
 
-3. `modd`
+3. `air`
 
 The program will automatically rebuild and relaunch on any `.go` file change.
 
