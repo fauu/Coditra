@@ -25,7 +25,7 @@
   const handleSentenceClick = (event) => {
     const el = event.currentTarget;
     if (el.classList.contains("focused")) return;
-    segmentEls.forEach((e) => (e.classList = "segment"));
+    segmentEls.forEach((e) => { e.classList = "segment" });
     el.classList = "segment focused";
     scrollTo(el, { topOffset: SENTENCE_SCROLL_TOP_OFFSET, smooth: true });
   };
