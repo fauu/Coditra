@@ -1,31 +1,35 @@
 {
   "name": "coditra",
+  "type": "module",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "axios": "0.26.1"
+    "axios": "~1.8.4"
   },
   "devDependencies": {
-    "clean-webpack-plugin": "4.0.0",
-    "copy-webpack-plugin": "10.2.4",
-    "cross-env": "7.0.3",
-    "css-loader": "6.7.1",
-    "eslint": "8.12.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-svelte3": "3.4.1",
-    "mini-css-extract-plugin": "2.6.0",
-    "prettier": "2.6.1",
-    "prettier-plugin-svelte": "2.6.0",
-    "serve": "13.0.2",
-    "style-loader": "3.3.1",
-    "svelte": "3.46.6",
-    "svelte-check": "2.4.6",
-    "svelte-loader": "3.1.2",
-    "webpack": "5.71.0",
-    "webpack-cli": "4.10.0",
-    "webpack-dev-server": "4.7.4"
+    "@eslint/js": "~9.22.0",
+    "clean-webpack-plugin": "~4.0.0",
+    "copy-webpack-plugin": "~13.0.0",
+    "cross-env": "~7.0.3",
+    "css-loader": "~7.1.2",
+    "eslint": "~9.22.0",
+    "eslint-config-prettier": "~10.1.1",
+    "eslint-plugin-svelte3": "~4.0.0",
+    "globals": "~16.0.0",
+    "mini-css-extract-plugin": "~2.9.2",
+    "prettier": "~3.5.3",
+    "prettier-plugin-svelte": "~3.3.3",
+    "serve": "~14.2.4",
+    "style-loader": "~4.0.0",
+    "svelte": "~3.46.6",
+    "svelte-check": "~2.4.6",
+    "svelte-loader": "~3.2.4",
+    "webpack": "~5.98.0",
+    "webpack-cli": "~6.0.1",
+    "webpack-dev-server": "~5.2.0"
   },
   "private": true,
   "pnpm": {
