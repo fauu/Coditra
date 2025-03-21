@@ -3,6 +3,7 @@ package lookup
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -51,7 +52,11 @@ func GarzantiLookupSource() *Source {
 					return nil, err
 				}
 				defer res.Body.Close()
-				GarzantiSessionCookie = res.Cookies()[0]
+				cookies := res.Cookies()
+				if len(cookies) == 0 {
+					return nil, errors.New("no Garzanti session cookie returned")
+				}
+				GarzantiSessionCookie = cookies[0]
 				GarzantiSessionCookie.Path = "" // So that it serializes properly when sent back
 			}
 
