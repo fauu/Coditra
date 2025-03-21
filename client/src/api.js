@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { API_ADDR } from "./consts";
+import { API_ADDR } from "./consts.js";
 
 export const getDef = async (sourceId, input, params) =>
   apiGet([sourceId, input], params);
