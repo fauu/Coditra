@@ -1,6 +1,6 @@
 module github.com/fauu/coditra
 
-go 1.19
+go 1.24
 
 require (
 	github.com/PuerkitoBio/goquery v1.10.2
