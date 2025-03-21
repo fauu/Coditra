@@ -5,7 +5,7 @@ import sveltePlugin from "eslint-plugin-svelte3";
 import globals from "globals";
 
 export default defineConfig([
-  globalIgnores(["webpack.config.js"]),
+  globalIgnores(["webpack.config.cjs"]),
 
   js.configs.recommended,
   prettierConfig,
