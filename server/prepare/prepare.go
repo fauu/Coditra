@@ -3,7 +3,6 @@ package prepare
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strings"
 
@@ -11,7 +10,7 @@ import (
 )
 
 func Do(inPath string, outPath string) error {
-	inBytes, err := ioutil.ReadFile(inPath)
+	inBytes, err := os.ReadFile(inPath)
 	if err != nil {
 		return err
 	}

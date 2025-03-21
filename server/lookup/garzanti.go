@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 
@@ -88,7 +88,7 @@ func GarzantiLookupSource() *Source {
 				return nil, err
 			}
 			defer res.Body.Close()
-			bodyBytes, _ := ioutil.ReadAll(res.Body)
+			bodyBytes, _ := io.ReadAll(res.Body)
 			bodyBytes = bytes.TrimPrefix(bodyBytes, []byte("\xef\xbb\xbf")) // BOM
 			bodyStr := string(bodyBytes)
 			var lemmaResponse GarzantiLemmaResponse

@@ -4,7 +4,6 @@ import (
 	_ "embed"
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"path"
@@ -68,7 +67,7 @@ func LoadConfig() (*Config, error) {
 	}
 
 	filePath := path.Join(configDirPath, configFileName)
-	fileContent, err := ioutil.ReadFile(filePath)
+	fileContent, err := os.ReadFile(filePath)
 	if err != nil {
 		log.Printf("Cannot read config file (%v). Trying to create sample config…", err)
 

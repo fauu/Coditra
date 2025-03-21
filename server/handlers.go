@@ -3,7 +3,6 @@ package coditra
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -80,7 +79,7 @@ var htmlBodyRegexp = regexp.MustCompile(`(?s)<body.*?>(.*)</body>`)
 func getDocumentByName(w http.ResponseWriter, r *http.Request) {
 	name := chi.URLParam(r, "name")
 	filePath := path.Join(Cfg.DocumentsDir, name) + DocumentExt
-	fileContent, err := ioutil.ReadFile(filePath)
+	fileContent, err := os.ReadFile(filePath)
 	if err != nil {
 		errorResponse(w, http.StatusNotFound, err)
 		return
