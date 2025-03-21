@@ -4,12 +4,14 @@
 
 <div class="title-row">
   <span class="title">
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html lookupResult.word}
   </span>
   <span class="hyphenation">{lookupResult.hyphenation}</span>
 </div>
 
 <div class="definition">
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html lookupResult.definitionHtml}
 </div>
 

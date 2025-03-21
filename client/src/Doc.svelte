@@ -37,6 +37,7 @@
   onmousedown={onMouseDown}
   style:margin-bottom="{9 + extraMarginBottom}px"
 >
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html doc.content}
 </div>
 

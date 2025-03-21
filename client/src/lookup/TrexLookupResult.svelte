@@ -6,7 +6,7 @@
 
 {#if lookupResult.translations}
   <div class="translations">
-    {#each lookupResult.translations as translation}
+    {#each lookupResult.translations as translation (translation.url)}
       <!-- prettier-ignore -->
       <a class="translation further-lookup-button" href="{translation.url}" target="_blank">{translation.content}</a>
     {/each}
@@ -15,7 +15,7 @@
 
 {#if lookupResult.phrases}
   <div class="phrases">
-    {#each lookupResult.phrases as phrase}
+    {#each lookupResult.phrases as phrase (phrase.url)}
       <!-- prettier-ignore -->
       <a class="phrase further-lookup-button" href="{phrase.url}" target="_blank">{phrase.content}</a>
     {/each}
@@ -23,7 +23,7 @@
 {/if}
 
 <div class="examples">
-  {#each lookupResult.examples as example}
+  {#each lookupResult.examples as example, i (i)}
     <div class="example">
       <TwoColumnTranslation object={example} />
     </div>

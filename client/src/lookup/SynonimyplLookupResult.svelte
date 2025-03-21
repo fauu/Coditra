@@ -8,10 +8,10 @@
     <span class="title">{lookupResult.title}</span>
   </div>
 
-  {#each lookupResult.synonymGroups as synonymGroup}
+  {#each lookupResult.synonymGroups as synonymGroup, i (i)}
     <div class="synonym-group">
       <ul class="synonym-list">
-        {#each synonymGroup as synonym}
+        {#each synonymGroup as synonym (synonym.synonym)}
           <li class="synonym">
             {#if synonym.extra}
               <span class="extra">({synonym.extra})</span>
@@ -28,7 +28,7 @@
   </div>
 
   <ul class="synonym-list">
-    {#each lookupResult.suggestedAlternatives as alt}
+    {#each lookupResult.suggestedAlternatives as alt (alt)}
       <li class="synonym">
         <button class="further-lookup-button" onclick={() => onRefLookup(alt)}>
           {alt}

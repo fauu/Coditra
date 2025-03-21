@@ -12,14 +12,15 @@
 </div>
 
 <div class="morf-blocks">
-  {#each lookupResult.morfBlocks as block}
+  {#each lookupResult.morfBlocks as block, i (i)}
     <div class="morf-block">
       <div class="morf">{block.morf}</div>
       <div class="morf-block-main">
-        {#each block.segments as segment}
+        {#each block.segments as segment, i (i)}
           <div class="segment">
             {#if segment.definition}
               <div class="definition">
+                <!-- eslint-disable-next-line svelte/no-at-html-tags -->
                 {@html segment.definition}
               </div>
             {/if}
@@ -36,7 +37,7 @@
 {/if}
 
 {#if lookupResult.keywordTerms}
-  {#each lookupResult.keywordTerms as keywordTerm}
+  {#each lookupResult.keywordTerms as keywordTerm, i (i)}
     <div class="keyword-term">
       <div class="keyword-term-main">
         <TwoColumnTranslation object={keywordTerm.twoColumn} />

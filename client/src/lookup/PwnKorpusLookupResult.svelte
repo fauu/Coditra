@@ -3,7 +3,7 @@
 </script>
 
 <div class="main">
-  {#each lookupResult.entries as entry}
+  {#each lookupResult.entries as entry, i (i)}
     <!-- prettier-ignore -->
     <div class="entry">
       {entry.preFragment}<a href={entry.detailsUrl} target="_blank">{entry.theWord}</a>{entry.postFragment}

@@ -2,7 +2,7 @@
   let { entries } = $props();
 </script>
 
-{#each entries as entry}
+{#each entries as entry, i (i)}
   <div class="entry">
     <div class="source-column">
       <div class="source-form">{entry.sourceForm}</div>
@@ -16,7 +16,7 @@
       {/if}
     </div>
     <div class="target-column">
-      {#each entry.translations as translation}
+      {#each entry.translations as translation, i (i)}
         <div class="translation-row">
           <div class="note">
             {#if translation.note}({translation.note}){/if}

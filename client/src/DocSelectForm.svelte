@@ -6,7 +6,7 @@
   <h1>Coditra</h1>
   <p class="select-doc-prompt-msg">Select a document:</p>
   <ul class="doc-list">
-    {#each docNames as docName}
+    {#each docNames as docName (docName)}
       <button type="button" onclick={() => onSubmit(docName)}>{docName}</button>
     {/each}
   </ul>

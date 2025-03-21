@@ -6,7 +6,7 @@
 
 {#if object.expressions}
   <div class="expressions">
-    {#each object.expressions as expression}
+    {#each object.expressions as expression, i (i)}
       <div class="expression">
         <TwoColumnTranslation object={expression} />
       </div>
@@ -16,7 +16,7 @@
 
 {#if object.examples}
   <div class="examples">
-    {#each object.examples as example}
+    {#each object.examples as example, i (i)}
       <div class="example">
         <TwoColumnTranslation object={example} />
       </div>

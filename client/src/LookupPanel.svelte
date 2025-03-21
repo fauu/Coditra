@@ -150,7 +150,7 @@
   <div class="main-row">
     <div class="side-column">
       <div class="lookup-buttons">
-        {#each selectedSetup.lookupEntries as entry}
+        {#each selectedSetup.lookupEntries as entry (entry.id)}
           <LookupButton
             {entry}
             isCurrent={currentLookupEntry === entry &&
@@ -160,17 +160,19 @@
         {/each}
       </div>
       <select class="setup-picker" bind:value={selectedSetupIdx} required>
-        {#each setups as setup, idx}
+        {#each setups as setup, idx (setup.name)}
           <option value={idx}>{setup.name}</option>
         {/each}
       </select>
     </div>
+    <!-- eslint-disable quotes -->
     <div
       class="lookup-result {currentLookupEntry
         ? 'source-' + currentLookupEntry.source
         : ''}"
       class:loaded={lookupFetch.state === "done"}
     >
+    <!-- eslint-enable quotes -->
       {#if lookupFetch.state === "fetching"}
         <div class="spinner-container">
           <Spinner delayMs={1000} />

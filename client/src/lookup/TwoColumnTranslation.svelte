@@ -3,9 +3,11 @@
 </script>
 
 <div class="source">
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html object.source}
 </div>
 <div class="target">
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html object.target}
 </div>
 

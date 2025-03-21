@@ -20,8 +20,9 @@
 
 <div class="secondary">
   {#if lookupResult.otherDicts}
-    {#each lookupResult.otherDicts as entry}
+    {#each lookupResult.otherDicts as entry, i (i)}
       <div class="other-dicts-entry">
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
         {@html entry}
       </div>
     {/each}

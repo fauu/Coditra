@@ -5,14 +5,14 @@
 </script>
 
 <div class="sjp-result">
-  {#each lookupResult.sjpResult.entries || [] as entry}
+  {#each lookupResult.sjpResult.entries || [] as entry, i (i)}
     <div class="entry">
       <span class="entry-title">{entry.title}</span>
       {#if entry.definitions.length === 1}
         <PwnSjpDefinition definition={entry.definitions[0]} {onRefLookup} />
       {:else}
         <ol class="definition-list">
-          {#each entry.definitions as definition}
+          {#each entry.definitions as definition, i (i)}
             <li>
               <PwnSjpDefinition {definition} {onRefLookup} />
             </li>
@@ -24,9 +24,9 @@
 </div>
 
 <div class="doroszewski-result">
-  {#each lookupResult.doroszewskiResult.entries || [] as entry}
+  {#each lookupResult.doroszewskiResult.entries || [] as entry, i (i)}
     <div class="entry">
-      {#each entry.imgFragmentUrls as imgFragmentUrl}
+      {#each entry.imgFragmentUrls as imgFragmentUrl (imgFragmentUrl)}
         <img
           class="doroszewski-image-fragment"
           src={imgFragmentUrl}
