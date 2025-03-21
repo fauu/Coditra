@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 pushd client/ || exit
-yarn build
+pnpm build
 popd || exit
 rm -rf server/config.sample.nt
 cp config/config.sample.nt server/

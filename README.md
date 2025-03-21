@@ -33,7 +33,7 @@ Built with [Go](https://go.dev/) and [Svelte](https://svelte.dev/).
 Binary releases are not currently available. The program must be built from
 the source:
 
-Requirements: `Yarn 1` (or equivalent), `go`.
+Requirements: `pnpm` (or equivalent), `go`.
 
 1. Clone
 
@@ -45,8 +45,8 @@ Requirements: `Yarn 1` (or equivalent), `go`.
 
     ```sh
     cd Coditra/client
-    yarn install
-    yarn build
+    pnpm install
+    pnpm build
     ```
 
 1. Build the server
@@ -180,7 +180,7 @@ Terminal #2:
 
 1. `cd client`
 
-2. `yarn dev`
+2. `pnpm dev`
 
 The client will be hot-reloaded on modification.
 

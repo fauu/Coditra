@@ -1,3 +1,3 @@
-yarn.lock
-node_modules/
+client/pnpm-lock.yaml
+client/node_modules/
 server/tmp
