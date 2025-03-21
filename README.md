@@ -7,18 +7,18 @@
 -->
 # Coditra
 
-> A translator’s companion for desktop. Select fragments of a text document and
-> quickly look them up in online dictionaries
+> A translator’s companion program for the desktop. Select fragments of a text
+> document and quickly look them up in online dictionaries
 
 Coditra is a locally run web application intended as support in translation of
-text. Its main feature are quick dictionary lookups, whereby results are pulled
+text. Its main feature is quick dictionary lookups, whereby results are pulled
 from various online dictionaries and presented in a clear form directly in the
 user interface.
 
 Coditra comes with several built-in lookup sources. Adding a custom source
-requires writing an adapter and compiling it together the server portion of the
-program as well as writing a UI component for the client portion of the program
-to display the results.
+currently requires writing an adapter for it, compiling it together with the
+server portion of the program as well as writing the corresponding UI component
+for the client portion of the program to display the results.
 
 Supports Linux, Windows, and (theoretically — untested) macOS.
 
@@ -30,7 +30,7 @@ Built with [Go](https://go.dev/) and [Svelte](https://svelte.dev/).
 
 ## Installation
 
-Binary releases are not currently available. The program must be built from
+Binary releases are not currently provided. The program must be built from
 the source:
 
 Requirements: `pnpm` (or equivalent), `go`.
@@ -52,16 +52,16 @@ Requirements: `pnpm` (or equivalent), `go`.
 1. Build the server
 
     ```sh
-    cd ..
+    cd .. # from `client` back to root
     ./scripts/server-prebuild.sh
     cd server
     go build -o target/coditra cmd/coditra/main.go
     ```
 
-The self-contained executable for the program is now ready at
-`server/target/coditra[.exe]`.
+This produces a self-contained executable at `server/target/coditra[.exe]`.
 
-The web interface will be accessible at <http://localhost:1291>.
+Upon running it, the web interface will be accessible at
+<http://localhost:1291>.
 
 ## Configuration
 
@@ -72,7 +72,8 @@ On first launch, the program will create a default configuration file
 `$XDG_CONFIG_HOME/coditra/config.nt` (usually `~/.config/coditra/config.nt`)
 
 **Windows**<br>
-`%APPDATA%\coditra\config.nt` (usually `C:\Users\<username>\AppData\Roaming\coditra\config.nt`)
+`%APPDATA%\coditra\config.nt` (usually
+`C:\Users\<username>\AppData\Roaming\coditra\config.nt`)
 
 **macOS**<br>
 `~/Library/Application Support/coditra/config.nt`
@@ -143,8 +144,8 @@ coditra --prepare <filename>.md <filename>.html
 
 ## Usage tips/notes
 
-* Initiating text selection by with double click instead of a single click makes
-  it snap to full words.
+* Initiating a browser text selection with a double click instead of a single
+  click makes it snap to full words.
 
 * You can use `pandoc` to easily create an input Markdown file directly from a
   text selection made in web browser. For example (Linux Wayland version):
@@ -158,7 +159,7 @@ coditra --prepare <filename>.md <filename>.html
 
 ## Known issues
 
-* TREX and Garzanti sources are currently broken.
+* TREX and Garzanti lookup sources are currently broken.
 
 * SJP PWN lookup: some results as well as “internal” cross-references not
   picked up. For an example of both see <https://sjp.pwn.pl/sjp/szukaj/mistrz>
