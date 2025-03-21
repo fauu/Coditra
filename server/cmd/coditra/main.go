@@ -15,7 +15,10 @@ func main() {
 		if err != nil {
 			printError(err)
 			if runtime.GOOS == "windows" {
-				fmt.Scanln()
+				_, err := fmt.Scanln()
+				if err != nil {
+					printError(err)
+				}
 			}
 		}
 		return
