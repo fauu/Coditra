@@ -15,6 +15,7 @@ lint: lint-client lint-server
 lint-client:
 	cd client
 	pnpm lint
+	pnpm svelte-check
 .PHONY: lint-client
 
 lint-server:

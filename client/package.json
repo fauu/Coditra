@@ -5,6 +5,7 @@
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack serve",
     "lint": "eslint .",
+    "svelte-check": "svelte-check",
     "format": "prettier --write ."
   },
   "dependencies": {
