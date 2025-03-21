@@ -158,8 +158,10 @@ coditra --prepare <filename>.md <filename>.html
 
 ## Known issues
 
+* TREX and Garzanti sources are currently broken.
+
 * SJP PWN lookup: some results as well as “internal” cross-references not
-  picked up. For example of both see <https://sjp.pwn.pl/sjp/szukaj/mistrz>
+  picked up. For an example of both see <https://sjp.pwn.pl/sjp/szukaj/mistrz>
   (under “wielki mistrz”).
 
 * Lingea lookup: unhandled cases:
