@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Client (Dev)",
+      "type": "shell",
+      "command": "make dev-client",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Server (Dev)",
+      "type": "shell",
+      "command": "make dev-server",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
