@@ -162,7 +162,8 @@ coditra --prepare <filename>.md <filename>.html
 
 ## Known issues
 
-* TREX and Garzanti lookup sources are currently broken.
+* TREX and Reverso Context sources are broken in some circumstances (Cloudflare
+  challenge). Garzanti blocks VPNs.
 
 * SJP PWN lookup: some results as well as “internal” cross-references not
   picked up. For an example of both see <https://sjp.pwn.pl/sjp/szukaj/mistrz>
