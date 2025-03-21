@@ -4,6 +4,6 @@ export function scrollTo(el, { topOffset, smooth }) {
 
   window.scrollTo({
     top: offsetPos,
-    behavior: smooth ? "smooth" : "auto"
+    behavior: smooth ? "smooth" : "auto",
   });
 }

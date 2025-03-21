@@ -9,11 +9,11 @@ const dev = !prod;
 
 module.exports = {
   entry: {
-    bundle: ["./src/main.js"]
+    bundle: ["./src/main.js"],
   },
   resolve: {
     alias: {
-      svelte: path.resolve("node_modules", "svelte")
+      svelte: path.resolve("node_modules", "svelte"),
     },
     conditionNames: ["svelte"],
     extensions: [".mjs", ".js", ".svelte"],
@@ -47,37 +47,38 @@ module.exports = {
         // required to prevent errors from Svelte on Webpack 5+
         test: /node_modules\/svelte\/.*\.mjs$/,
         resolve: {
-          fullySpecified: false
-        }
+          fullySpecified: false,
+        },
       },
       {
         test: /\.css$/,
         use: [
           prod ? MiniCssExtractPlugin.loader : "style-loader",
-          "css-loader"
+          "css-loader",
         ],
-      }
-    ]
+      },
+    ],
   },
   mode,
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name].css"
+      filename: "[name].css",
     }),
-    new CopyPlugin({ patterns: [
+    new CopyPlugin({
+      patterns: [
         { from: "src/index.html", to: "." },
         { from: "src/global.css", to: "." },
         { from: "res", to: "." },
-      ]},
-    ),
+      ],
+    }),
   ],
   devtool: prod ? false : "source-map",
   devServer: {
     port: "5000",
     hot: true,
     client: {
-      overlay: true
-    }
-  }
+      overlay: true,
+    },
+  },
 };

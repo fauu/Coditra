@@ -6,7 +6,7 @@ import globals from "globals";
 
 export default defineConfig([
   globalIgnores(["webpack.config.js"]),
-  
+
   js.configs.recommended,
   prettierConfig,
   {
@@ -15,17 +15,20 @@ export default defineConfig([
       sourceType: "module",
       globals: {
         ...globals.browser,
-        ...globals.es2019
+        ...globals.es2019,
       },
     },
     rules: {
       quotes: ["warn", "double"],
       semi: ["error", "always"],
-      "no-unused-vars": ["error", { 
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_",
-        "caughtErrorsIgnorePattern": "^_"
-      }]
+      "no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
     },
   },
   {
@@ -34,5 +37,5 @@ export default defineConfig([
       svelte3: sveltePlugin,
     },
     processor: "svelte3/svelte3",
-  }
+  },
 ]);
